@@ -1,0 +1,54 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<stdbool.h>
+
+struct Node{
+    int val;
+    struct Node* left;
+    struct Node* right;
+};
+
+struct Node* create(int data){
+    struct Node* head = malloc(sizeof(struct Node*));
+    if(head == NULL)    
+        return NULL;
+    head->val = data;
+    head->left = NULL;
+    head->right = NULL;
+    return head;
+}
+void binaryTree(struct Node* root,char* path,int index,int* returnSize,char*** paths){
+    if(root == NULL)
+        return ;
+    int addlen = snprintf(path+index,1000-index,"%d",root->val);
+    index += addlen;
+    if(root->left == NULL && root->right == NULL){
+            path[index] = '\0';
+            (*paths)([*returnSize]++) = strdup(path);
+    }else{
+        path[index++] = '-';
+        path[index++] = '>';
+        binaryTree(root->left,path,index,returnSize,paths);
+        binaryTree(root->right,path,index,returnSize,paths);
+    }
+}
+
+char** binarytreePaths(struct Node* root){
+    char** paths = malloc(sizeof(int)*1000);
+    if(ptr == NULL)
+        return  NULL;
+    char paths[1000];
+    int* returnSize = 0;
+    char** point = binaryTree(root,paths,0,returnSize,paths);
+    return 
+}
+
+int main(){
+    struct Node* root = create(1);
+    root->left = create(2);
+    root->right = create(3);
+    root->left->right = create(5);
+    
+    char tree[][] = binarytreePaths(root);
+   
+}
