@@ -18,23 +18,19 @@ struct TreeNode *create(int val) {
 }
 
 struct TreeNode* trimBST(struct TreeNode* root, int low, int high) {
-    if (!root) return NULL;
-
-    if (root->val < low) {
+    if (!root) return NULL;// finishing searchin on the node
+    if (root->val < low) { // in the case of the content is less then (low) just return
         struct TreeNode* right = trimBST(root->right, low, high);
         free(root);
         return right;
     }
-
-    if (root->val > high) {
+    if (root->val > high) {// the opposite
         struct TreeNode* left = trimBST(root->left, low, high);
         free(root);
         return left;
     }
-
-    root->left = trimBST(root->left, low, high);
-    root->right = trimBST(root->right, low, high);
-
+    root->left = trimBST(root->left, low, high);// move to the left (recursion)
+    root->right = trimBST(root->right, low, high); // move to the right (recursion)
     return root;
 }
 
