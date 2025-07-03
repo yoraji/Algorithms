@@ -11,3 +11,7 @@ int hight(struct ListNode *root)
 		return -1;
 	return (left > right ? left : right) + 1;
 }
+
+bool isBalanced(struct TreeNode* root) {
+	return (hight(root) != -1);
+}
